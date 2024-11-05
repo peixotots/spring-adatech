@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 public class ObterUsuarioService {
 
     public Usuario execute(Long id){
-        return new Usuario("Sakura", 10, id);
+        return null;
     }
 }
