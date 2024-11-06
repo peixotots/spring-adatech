@@ -11,14 +11,21 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column(name = "NOME_USUARIO", nullable = false)
     private String nome;
+
     @Column(name = "IDADE", nullable = false)
     private int idade;
+
     @Column(name = "DOCUMENTO", unique = true)
     private String cpf;
+
     @Column(name = "DATA_HORA_CRIACAO")
     private LocalDateTime dataHoraCriacao;
+
+    @Column(name = "EMAIL")
+    private String email;
 
     public Usuario(Long id, String nome, int idade, String cpf){
         this.id = id;
@@ -26,6 +33,7 @@ public class Usuario {
         this.idade = idade;
         this.cpf = cpf;
         this.dataHoraCriacao = LocalDateTime.now();
+        this.email = email;
     }
 
     public Usuario() {
@@ -70,5 +78,13 @@ public class Usuario {
 
     public void setDataHoraCriacao(LocalDateTime dataHoraCriacao) {
         this.dataHoraCriacao = dataHoraCriacao;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

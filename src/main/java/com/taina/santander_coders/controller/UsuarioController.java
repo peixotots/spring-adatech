@@ -2,6 +2,7 @@ package com.taina.santander_coders.controller;
 
 import com.taina.santander_coders.model.Usuario;
 import com.taina.santander_coders.service.CriarUsuarioService;
+import com.taina.santander_coders.service.ObterUsuarioEmailService;
 import com.taina.santander_coders.service.ObterUsuarioPorFiltroService;
 import com.taina.santander_coders.service.ObterUsuarioService;
 import org.springframework.http.HttpStatus;
@@ -17,11 +18,14 @@ public class UsuarioController {
     private final ObterUsuarioService service;
     private final CriarUsuarioService criarUsuarioService;
     private final ObterUsuarioPorFiltroService obterUsuarioPorFiltroService;
+    private final ObterUsuarioEmailService obterUsuarioPorEmailService;
 
-    public UsuarioController(ObterUsuarioService service, CriarUsuarioService criarUsuarioService, ObterUsuarioPorFiltroService obterUsuarioPorFiltroService) {
+    public UsuarioController(ObterUsuarioService service, CriarUsuarioService criarUsuarioService, ObterUsuarioPorFiltroService obterUsuarioPorFiltroService,
+                             ObterUsuarioEmailService obterUsuarioPorEmailService) {
         this.service = service;
         this.criarUsuarioService = criarUsuarioService;
         this.obterUsuarioPorFiltroService = obterUsuarioPorFiltroService;
+        this.obterUsuarioPorEmailService = obterUsuarioPorEmailService;
     }
 
     // Metodo responsável por criar um novo usuário no banco de dados através de uma requisição POST
@@ -37,7 +41,7 @@ public class UsuarioController {
         return service.execute(id);
     }
 
-    @GetMapping
+    @GetMapping("/nome")
     public List<Usuario> obterUsuarioPorNome(@RequestParam String nome){
         return obterUsuarioPorFiltroService.obterUsuarioPorNome(nome);
     }
@@ -45,6 +49,11 @@ public class UsuarioController {
     @GetMapping("/cpf")
     public Usuario obterUsuarioPorCpf(@RequestParam String cpf){
         return obterUsuarioPorFiltroService.obterUsuarioPorCpf(cpf);
+    }
+
+    @GetMapping("/email")
+    public Usuario obterUsuarioPorEmail(@RequestParam String email){
+        return obterUsuarioPorEmailService.execute(email);
     }
 
 }
