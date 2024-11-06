@@ -2,7 +2,9 @@ package com.taina.santander_coders.service;
 
 import com.taina.santander_coders.model.Usuario;
 import com.taina.santander_coders.repository.UsuarioRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CriarUsuarioService {
 
     private final UsuarioRepository repository;
