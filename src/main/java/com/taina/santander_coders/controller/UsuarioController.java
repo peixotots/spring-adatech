@@ -4,6 +4,8 @@ import com.taina.santander_coders.model.Usuario;
 import com.taina.santander_coders.service.CriarUsuarioService;
 import com.taina.santander_coders.service.ObterUsuarioPorFiltroService;
 import com.taina.santander_coders.service.ObterUsuarioService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +39,7 @@ public class UsuarioController {
         return service.execute(id);
     }
 
-    @GetMapping
+    @GetMapping("/nome")
     public List<Usuario> obterUsuarioPorNome(@RequestParam String nome){
         return obterUsuarioPorFiltroService.obterUsuarioPorNome(nome);
     }
@@ -45,6 +47,11 @@ public class UsuarioController {
     @GetMapping("/cpf")
     public Usuario obterUsuarioPorCpf(@RequestParam String cpf){
         return obterUsuarioPorFiltroService.obterUsuarioPorCpf(cpf);
+    }
+
+    @GetMapping
+    public Page<Usuario> obterUsuarios(Pageable pageable){
+        return obterUsuarioPorFiltroService.execute(pageable);
     }
 
 }

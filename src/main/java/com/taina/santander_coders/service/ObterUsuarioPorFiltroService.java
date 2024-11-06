@@ -2,6 +2,8 @@ package com.taina.santander_coders.service;
 
 import com.taina.santander_coders.model.Usuario;
 import com.taina.santander_coders.repository.UsuarioRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,4 +28,7 @@ public class ObterUsuarioPorFiltroService {
         return repository.findByNomeContaining(nome);
     }
 
+    public Page<Usuario> execute(Pageable pageable) {
+        return null;
+    }
 }
