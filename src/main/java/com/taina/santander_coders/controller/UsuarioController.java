@@ -3,6 +3,8 @@ package com.taina.santander_coders.controller;
 import com.taina.santander_coders.model.Usuario;
 import com.taina.santander_coders.service.CriarUsuarioService;
 import com.taina.santander_coders.service.ObterUsuarioService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,8 +20,8 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public Usuario criarUsuario(@RequestBody Usuario usuario){
-        return criarUsuarioService.executar(usuario);
+    public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario){
+        return ResponseEntity.status(HttpStatus.CREATED).body(criarUsuarioService.executar(usuario));
     }
 
     @GetMapping("/{id}")
