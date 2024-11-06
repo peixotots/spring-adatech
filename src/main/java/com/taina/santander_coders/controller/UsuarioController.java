@@ -19,6 +19,8 @@ public class UsuarioController {
         this.criarUsuarioService = criarUsuarioService;
     }
 
+    // Metodo responsável por criar um novo usuário no banco de dados através de uma requisição POST
+    // Recebe o objeto Usuario no corpo da requisição (@RequestBody) e retorna o ResponseEntity com o status 201
     @PostMapping
     public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario){
         return ResponseEntity.status(HttpStatus.CREATED).body(criarUsuarioService.executar(usuario));
