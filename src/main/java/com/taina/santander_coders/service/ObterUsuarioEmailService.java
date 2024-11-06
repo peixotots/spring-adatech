@@ -13,8 +13,13 @@ public class ObterUsuarioEmailService {
         this.repository = repository;
     }
 
+//    public Usuario execute(String email){
+//        return repository.encontrarPorEmail(email)
+//                .orElseThrow(() -> new RuntimeException(String.format("Usuário com email %s não encontrado", email)));
+//    }
+
     public Usuario execute(String email){
-        return repository.encontrarPorEmail(email)
+        return repository.encontrarPorEmailNative(email)
                 .orElseThrow(() -> new RuntimeException(String.format("Usuário com email %s não encontrado", email)));
     }
 
